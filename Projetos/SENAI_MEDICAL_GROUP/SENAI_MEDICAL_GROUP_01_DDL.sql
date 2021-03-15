@@ -40,6 +40,8 @@ CREATE TABLE Clinica
 	,Endereco VARCHAR (200) NOT NULL
 	,NomeFantasia VARCHAR (100) UNIQUE NOT NULL
 	,RazaoSocial VARCHAR (150) UNIQUE NOT NULL
+	,HorarioAbertura TIME NOT NULL
+	,HorarioFechamento TIME NOT NULL
 );
 GO
 
@@ -81,38 +83,6 @@ CREATE TABLE Consulta
 	,IdPaciente INT FOREIGN KEY REFERENCES Paciente(IdPaciente)
 	,IdSituacao INT FOREIGN KEY REFERENCES Situacao(IdSituacao)
 	,DataConsulta DATE NOT NULL
-	,Descricao VARCHAR (255) NOT NULL
+	,Descricao VARCHAR (255) DEFAULT ('Sem descrição')
 );
 GO
-
--- DML
-
-
--- Selecionando o banco de dados que será utilizado
-USE MEDICAL_GROUP_TARDE
-GO
-
--- Inserindo as informações nas tabelas
-INSERT INTO TipoUsuario (TipoUsuario)
-VALUES					('Administrador')
-						,('Médico')
-						,('Paciente')
-GO
-
-INSERT INTO Usuario (IdTipoUsuario, Email, Senha)
-VALUES					(2,'ricardo.lemos@spmedicalgroup.com.br', 'ricardo123')
-						,(2,'roberto.possarle@spmedicalgroup.com.br', 'possarle456')
-						,(2, 'helena.souza@spmedicalgroup.com.br',	'helena789')
-						,(3, 'ligia@gmail.com', 'ligia123')
-						,(3, 'alexandre@gmail.com',	'alexandre456')
-						,(3, 'fernando@gmail.com', 'fernando789')
-						,(3, 'henrique@gmail.com',	'henrique987')
-						,(3, 'joao@gmail.com', 'joao654')
-						,(3, 'bruno@gmail.com',	'bruno123')
-						,(3, 'mariana@outlook.com',	'mariana987')
-GO
-
--- DQL
-
-SELECT * FROM TipoUsuario
-SELECT * FROM Usuario
